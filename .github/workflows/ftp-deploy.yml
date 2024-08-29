@@ -1,0 +1,28 @@
+name: Deploy ImageManager.php to FTPS Server
+
+on:
+  push:
+    paths:
+      - 'ImageManager.php' # The path is directly to the root
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v3
+
+    - name: Upload ImageManager.php via FTPS
+      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      with:
+        server: ${{ secrets.FTPS_SERVER }}
+        username: ${{ secrets.FTPS_USERNAME }}
+        password: ${{ secrets.FTPS_PASSWORD }}
+        local-dir: '.'  # Root directory of the repository
+        server-dir: '/www/mainecardworks.us.tempcloudsite.com/classes' # Path on the FTPS server
+        method: 'ftps' # Specify FTPS for secure transfer
+        exclude: |
+          *
+        include: |
+          ImageManager.php
