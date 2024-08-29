@@ -3,7 +3,7 @@ name: Deploy ImageManager.php to FTPS Server
 on:
   push:
     paths:
-      - 'ImageManager.php' # The path is directly to the root
+      - 'ImageManager.php' # Trigger on changes to ImageManager.php
 
 jobs:
   ftp-deploy:
@@ -21,8 +21,7 @@ jobs:
         password: ${{ secrets.FTPS_PASSWORD }}
         protocol: 'ftps'  # Specify FTPS for secure transfer
         local-dir: './'  # Root directory of the repository, with trailing slash
-        server-dir: '/www/mainecardworks.us.tempcloudsite.com/classes' # Path on the FTPS server
+        server-dir: '/www/mainecardworks.us.tempcloudsite.com/classes/'  # Path on the FTPS server, with trailing slash
         exclude: |
-          *  # Exclude everything by default
-        include: |
-          ./ImageManager.php  # Include only the ImageManager.php file
+          *  # Exclude everything
+          !ImageManager.php  # Except ImageManager.php
