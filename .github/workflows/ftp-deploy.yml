@@ -14,15 +14,15 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Upload ImageManager.php via FTPS
-      uses: SamKirkland/FTP-Deploy-Action@4.3.0
+      uses: SamKirkland/FTP-Deploy-Action@4.4.0
       with:
         server: ${{ secrets.FTPS_SERVER }}
         username: ${{ secrets.FTPS_USERNAME }}
         password: ${{ secrets.FTPS_PASSWORD }}
-        local-dir: '.'  # Root directory of the repository
+        protocol: 'ftps'  # Specify FTPS for secure transfer
+        local-dir: './'  # Root directory of the repository, with trailing slash
         server-dir: '/www/mainecardworks.us.tempcloudsite.com/classes' # Path on the FTPS server
-        method: 'ftps' # Specify FTPS for secure transfer
         exclude: |
-          *
+          *  # Exclude everything by default
         include: |
-          ImageManager.php
+          ./ImageManager.php  # Include only the ImageManager.php file
