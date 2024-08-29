@@ -21,7 +21,7 @@ jobs:
         password: ${{ secrets.FTPS_PASSWORD }}
         protocol: 'ftps'  # Specify FTPS for secure transfer
         local-dir: './'  # Root directory of the repository, with trailing slash
-        server-dir: '/www/mainecardworks.us.tempcloudsite.com/classes/'  # Path on the FTPS server, with trailing slash
+        server-dir: '/mainecardworks.us.tempcloudsite.com/classes/'  # Path on the FTPS server, with trailing slash
         exclude: |
           *  # Exclude everything
           !ImageManager.php  # Except ImageManager.php
