@@ -308,10 +308,10 @@ class ImageManagerCore
         if ($destinationFileType == 'png' || $destinationFileType == 'webp' || $destinationFileType == 'avif') {
             imagealphablending($destImage, false);
             imagesavealpha($destImage, true);
-            $transparent = imagecolorallocatealpha($destImage, 30, 104, 3, 127);
+            $transparent = imagecolorallocatealpha($destImage, 71, 78, 90, 127);
             imagefilledrectangle($destImage, 0, 0, $destinationWidth, $destinationHeight, $transparent);
         } else {
-            $white = imagecolorallocate($destImage, 30, 104, 3);
+            $white = imagecolorallocate($destImage, 71, 78, 90);
             imagefilledrectangle($destImage, 0, 0, $destinationWidth, $destinationHeight, $white);
         }
 
@@ -585,7 +585,7 @@ class ImageManagerCore
         $dest['height'] = null !== $dstHeight ? $dstHeight : $src['height'];
         $dest['ressource'] = ImageManager::createWhiteImage($dest['width'], $dest['height']);
 
-        $white = imagecolorallocate($dest['ressource'], 30, 104, 3);
+        $white = imagecolorallocate($dest['ressource'], 71, 78, 90);
         // @phpstan-ignore-next-line
         imagecopyresampled($dest['ressource'], $src['ressource'], 0, 0, $dest['x'], $dest['y'], $dest['width'], $dest['height'], $dest['width'], $dest['height']);
         imagecolortransparent($dest['ressource'], $white);
@@ -633,7 +633,7 @@ class ImageManagerCore
     public static function createWhiteImage($width, $height)
     {
         $image = imagecreatetruecolor($width, $height);
-        $white = imagecolorallocate($image, 30, 104, 3);
+        $white = imagecolorallocate($image, 71, 78, 90);
         imagefill($image, 0, 0, $white);
 
         // @phpstan-ignore-next-line
